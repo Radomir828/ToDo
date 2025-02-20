@@ -1,3 +1,5 @@
+import { Form } from "./components/Form";
+import { Item } from "./components/Item";
 import "./styles/styles.css";
 
 import { todos } from "./utils/constants";
@@ -7,18 +9,19 @@ const template = document.querySelector(
   "#todo-item-template"
 ) as HTMLTemplateElement;
 
-const createItem = (name: string) => {
-  const itemElement = template.content
-    .querySelector(".todo-item")
-    .cloneNode(true) as HTMLElement;
+const formElement = document.querySelector(".todos__form") as HTMLFormElement;
 
-  const itemTitle = itemElement.querySelector(".todo-item__text");
-  itemTitle.textContent = name;
+const todoForm = new Form(formElement, handleSubmitForm);
 
-  return itemElement;
-};
+function handleSubmitForm(data: string) {
+  const todoItem = new Item(template);
+  const itemElement = todoItem.render({ id: 8, name: data });
+  contentElement.prepend(itemElement);
+  todoForm.clearValue();
+}
 
 todos.forEach((item) => {
-  const itemElement = createItem(item);
+  const todoItem = new Item(template);
+  const itemElement = todoItem.render(item);
   contentElement.prepend(itemElement);
 });
