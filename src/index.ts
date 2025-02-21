@@ -1,3 +1,4 @@
+import { ToDoModel } from "./components/ToDoModel";
 import { Form } from "./components/Form";
 import { Item } from "./components/Item";
 import "./styles/styles.css";
@@ -15,7 +16,7 @@ const todoForm = new Form(formElement, handleSubmitForm);
 
 function handleSubmitForm(data: string) {
   const todoItem = new Item(template);
-  const itemElement = todoItem.render({ id: 8, name: data });
+  const itemElement = todoItem.render({ id: "8", name: data });
   contentElement.prepend(itemElement);
   todoForm.clearValue();
 }
@@ -25,3 +26,12 @@ todos.forEach((item) => {
   const itemElement = todoItem.render(item);
   contentElement.prepend(itemElement);
 });
+
+const todoArray = new ToDoModel(); // todoArray - это список наших дел на странице
+todoArray.items = todos; // это у нас сработал сеттер. К свойству _items получаем доступ только с помощю геттера и сеттера
+console.log(todoArray.items.map((item) => item)); //  это у нас сработал геттер
+todoArray.addItem("Прогулять собаку");
+console.log(todoArray.items);
+
+todoArray.removeItem("3");
+console.log(todoArray.items);

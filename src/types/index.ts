@@ -1,4 +1,10 @@
 export interface IItem {
-  id: number;
+  id: string;
   name: string;
+}
+
+export interface IToDoModel {
+  items: IItem[];
+  addItem: (data: string) => IItem;
+  removeItem: (id: string) => void;
 }
