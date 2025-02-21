@@ -1,4 +1,5 @@
-import { IItem } from "./../types/index";
+import { IItem } from "../types";
+
 export class Item {
   protected itemElement: HTMLElement;
   protected title: HTMLElement;
@@ -8,7 +9,6 @@ export class Item {
     this.itemElement = template.content
       .querySelector(".todo-item")
       .cloneNode(true) as HTMLElement;
-
     this.title = this.itemElement.querySelector(".todo-item__text");
   }
 
@@ -29,7 +29,7 @@ export class Item {
   }
 
   render(item: IItem) {
-    this.title.textContent = item.name;
+    this.name = item.name;
     this.id = item.id;
     return this.itemElement;
   }

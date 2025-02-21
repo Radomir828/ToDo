@@ -15,7 +15,7 @@ export class ToDoModel implements IToDoModel {
     return this._items;
   }
 
-  addItem(data: string) {
+  addItem(data: string): IItem {
     const uniqueId: number =
       Math.max(...this._items.map((item) => Number(item.id))) + 1;
 
