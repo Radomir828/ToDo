@@ -20,10 +20,6 @@ export class Page implements IPage {
     this._todoContainer = todoContainer as HTMLElement;
   }
 
-  // constructor(protected container: HTMLElement) {
-  //   this._formContainer = this.container.querySelector(".todo-form-container");
-  //   this._todoContainer = this.container.querySelector(".todos__list");
-  // }
   set formContainer(formElement: HTMLFormElement | null) {
     if (formElement) {
       this._formContainer.replaceChildren(formElement);
